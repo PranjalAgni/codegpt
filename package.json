@@ -9,17 +9,46 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:codegpt.helloWorld"
-  ],
+  "menus": {
+    "editor/context": [
+      {
+        "command": "chatgpt.explain",
+        "when": "editorHasSelection",
+        "group": "chatgpt-menu-group@1"
+      }
+    ],
+    "commandPalette": [
+      {
+        "command": "chatgpt.explain",
+        "when": "editorHasSelection"
+      }
+    ]
+  },
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "codegpt.helloWorld",
-        "title": "Hello World"
+        "command": "chatgpt.explain",
+        "title": "ChatGPT: Explain selection"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "chatGPT",
+      "type": "object",
+      "properties": {
+        "chatgpt.sessionToken": {
+          "type": "string",
+          "description": "A session token you get when logged into chat.openai.com",
+          "order": 1
+        },
+        "chatgpt.promptPrefix.explain": {
+          "type": "string",
+          "default": "Explain what this code does: ",
+          "description": "The prompt prefix used for explaining the selected code",
+          "order": 3
+        }        
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run package",
