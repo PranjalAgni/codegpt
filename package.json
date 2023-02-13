@@ -30,6 +30,10 @@
       {
         "command": "chatgpt.explain",
         "title": "ChatGPT: Explain selection"
+      },
+      {
+        "command": "chatgpt.refresh",
+        "title": "ChatGPT: Refresh"
       }
     ],
     "configuration": {

@@ -10,13 +10,26 @@ export function activate(context: vscode.ExtensionContext) {
   const commandExplain = vscode.commands.registerCommand(
     "chatgpt.explain",
     () => {
-      vscode.window.showInformationMessage("Explaining code with chatgpt");
+      vscode.window.showInformationMessage("Explaining code with chatgpt!");
       console.log("Extension URI: ", context.extensionUri);
       HelloWorldPanel.createOrShow(context.extensionUri);
     }
   );
 
-  context.subscriptions.push(commandExplain);
+  const commandRefresh = vscode.commands.registerCommand(
+    "chatgpt.refresh",
+    () => {
+      HelloWorldPanel.kill();
+      HelloWorldPanel.createOrShow(context.extensionUri);
+      setTimeout(() => {
+        vscode.commands.executeCommand(
+          "workbench.action.webview.openDeveloperTools"
+        );
+      }, 500);
+    }
+  );
+
+  context.subscriptions.push(commandExplain, commandRefresh);
 }
 
 // This method is called when your extension is deactivated

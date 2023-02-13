@@ -157,7 +157,7 @@ export class HelloWorldPanel {
         </script>
 			</head>
       <body>
-      <h1>Hello world</h1>
+      <h2>Hello world 1</h2>
 			</body>
 			</html>`;
   }
