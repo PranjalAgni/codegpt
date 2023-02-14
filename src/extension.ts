@@ -5,7 +5,7 @@ import { HelloWorldPanel } from "./HelloWorldPanel";
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   const config = vscode.workspace.getConfiguration("chatgpt");
-  console.log(" Config fetched from manifest file: ", config);
+  console.log("Config fetched from manifest file: ", config);
 
   const commandExplain = vscode.commands.registerCommand(
     "chatgpt.explain",
@@ -13,6 +13,12 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.window.showInformationMessage("Explaining code with chatgpt!");
       console.log("Extension URI: ", context.extensionUri);
       HelloWorldPanel.createOrShow(context.extensionUri);
+      const editor = vscode.window.activeTextEditor;
+      const selection = editor?.selection;
+      const text = editor?.document.getText(selection);
+      if (text?.length) {
+        console.log("This is the selection text: ", text);
+      }
     }
   );
 
