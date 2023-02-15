@@ -22,6 +22,13 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  const commandOpenApiKey = vscode.commands.registerCommand(
+    "chatgpt.apikey",
+    () => {
+      vscode.window.showInformationMessage("Please provide your API key");
+    }
+  );
+
   const commandRefresh = vscode.commands.registerCommand(
     "chatgpt.refresh",
     () => {
@@ -35,7 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  context.subscriptions.push(commandExplain, commandRefresh);
+  context.subscriptions.push(commandExplain, commandRefresh, commandOpenApiKey);
 }
 
 // This method is called when your extension is deactivated

@@ -32,6 +32,10 @@
         "title": "ChatGPT: Explain selection"
       },
       {
+        "command": "chatgpt.apikey",
+        "title": "ChatGPT: Setup OpenAI API key"
+      },
+      {
         "command": "chatgpt.refresh",
         "title": "ChatGPT: Refresh"
       }
