@@ -11,6 +11,7 @@ class ChatGPT {
   }
 
   public setApiKey(apiKey: string) {
+    console.log("Setting API key: ", apiKey);
     this.apiKey = apiKey;
   }
 }

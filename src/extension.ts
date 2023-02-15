@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { HelloWorldPanel } from "./HelloWorldPanel";
+import chatGPT from "./lib/ChatGPT";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -24,8 +25,13 @@ export function activate(context: vscode.ExtensionContext) {
 
   const commandOpenApiKey = vscode.commands.registerCommand(
     "chatgpt.apikey",
-    () => {
-      vscode.window.showInformationMessage("Please provide your API key");
+    async () => {
+      const apikey = await vscode.window.showInputBox({
+        prompt: "Please provide your OpenAI API key"
+      });
+      if (apikey?.length) {
+        chatGPT.setApiKey(apikey);
+      }
     }
   );
 
