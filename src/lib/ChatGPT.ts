@@ -1,6 +1,9 @@
+import { ChatGPTAPI } from "chatgpt";
+
 class ChatGPT {
   private static instance: ChatGPT;
   private apiKey: string;
+  private client: ChatGPTAPI;
 
   static getInstance() {
     if (!ChatGPT.instance) {
@@ -11,8 +14,15 @@ class ChatGPT {
   }
 
   public setApiKey(apiKey: string) {
-    console.log("Setting API key: ", apiKey);
     this.apiKey = apiKey;
+    console.log("Setting API key: ", this.apiKey);
+    this.initalizeApiClient();
+  }
+
+  private initalizeApiClient() {
+    this.client = new ChatGPTAPI({
+      apiKey: this.apiKey
+    });
   }
 }
 
