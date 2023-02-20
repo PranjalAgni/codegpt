@@ -23,6 +23,8 @@ class ChatGPT {
     this.client = new ChatGPTAPI({
       apiKey: this.apiKey
     });
+
+    console.log("Api client: ", this.client);
   }
 }
 
