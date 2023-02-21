@@ -29,4 +29,3 @@ class ChatGPT {
 }
 
 export default ChatGPT.getInstance();
-// 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
