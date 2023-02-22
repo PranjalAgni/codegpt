@@ -2,14 +2,13 @@ import { ChatGPTAPI } from "chatgpt";
 
 class ChatGPT {
   private static instance: ChatGPT;
-  private apiKey: string;
-  private client: ChatGPTAPI;
+  private apiKey!: string;
+  private client!: ChatGPTAPI;
 
   static getInstance() {
     if (!ChatGPT.instance) {
       ChatGPT.instance = new ChatGPT();
     }
-
     return ChatGPT.instance;
   }
 
@@ -25,6 +24,12 @@ class ChatGPT {
     });
 
     console.log("Api client: ", this.client);
+  }
+
+  public async askGPT(message: string) {
+    const response = await this.client.sendMessage(message);
+    console.log("GPT response: ", response);
+    return response;
   }
 }
 

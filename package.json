@@ -38,6 +38,10 @@
       {
         "command": "chatgpt.refresh",
         "title": "ChatGPT: Refresh"
+      },
+      {
+        "command": "chatgpt.askgpt",
+        "title": "ChatGPT: Ask GPT"
       }
     ],
     "configuration": {

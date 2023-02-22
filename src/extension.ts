@@ -48,7 +48,25 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  context.subscriptions.push(commandExplain, commandRefresh, commandOpenApiKey);
+  const commandAskGpt = vscode.commands.registerCommand(
+    "chatgpt.askgpt",
+    async () => {
+      const message = await vscode.window.showInputBox({
+        prompt: "Type the message here"
+      });
+
+      if (message?.length) {
+        await chatGPT.askGPT(message);
+      }
+    }
+  );
+
+  context.subscriptions.push(
+    commandExplain,
+    commandRefresh,
+    commandOpenApiKey,
+    commandAskGpt
+  );
 }
 
 // This method is called when your extension is deactivated
