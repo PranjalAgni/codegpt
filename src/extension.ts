@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { HelloWorldPanel } from "./HelloWorldPanel";
-import chatGPT from "./lib/ChatGPT";
+// import chatGPT from "./lib/ChatGPT";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -30,7 +30,8 @@ export function activate(context: vscode.ExtensionContext) {
         prompt: "Please provide your OpenAI API key"
       });
       if (apikey?.length) {
-        chatGPT.setApiKey(apikey);
+        console.log("Initalizing API key");
+        // chatGPT.setApiKey(apikey);
       }
     }
   );
@@ -56,7 +57,8 @@ export function activate(context: vscode.ExtensionContext) {
       });
 
       if (message?.length) {
-        await chatGPT.askGPT(message);
+        console.log("Sending request to chatgpt");
+        // await chatGPT.askGPT(message);
       }
     }
   );
