@@ -1,13 +1,14 @@
 import * as vscode from "vscode";
 import { HelloWorldPanel } from "./HelloWorldPanel";
 // import chatGPT from "./lib/ChatGPT";
+import { ChatGPTAPI } from "chatgpt";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   const config = vscode.workspace.getConfiguration("chatgpt");
   console.log("Config fetched from manifest file: ", config);
-
+  let client: ChatGPTAPI | null = null;
   const commandExplain = vscode.commands.registerCommand(
     "chatgpt.explain",
     () => {
@@ -29,8 +30,12 @@ export function activate(context: vscode.ExtensionContext) {
       const apikey = await vscode.window.showInputBox({
         prompt: "Please provide your OpenAI API key"
       });
+
       if (apikey?.length) {
         console.log("Initalizing API key");
+        client = new ChatGPTAPI({
+          apiKey: apikey
+        });
         // chatGPT.setApiKey(apikey);
       }
     }
@@ -58,7 +63,8 @@ export function activate(context: vscode.ExtensionContext) {
 
       if (message?.length) {
         console.log("Sending request to chatgpt");
-        // await chatGPT.askGPT(message);
+        const response = await client?.sendMessage(message);
+        console.log("Response: ", response);
       }
     }
   );
